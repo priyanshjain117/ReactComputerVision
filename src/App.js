@@ -13,8 +13,6 @@ function App() {
   const runCoco = async () => {
     try {
       const net = await tf.loadGraphModel('/model/model.json')
-      
-
       setInterval(() => {
         detect(net);
       }, 16.7);
@@ -22,7 +20,6 @@ function App() {
       console.error("Failed to load model:", error);
     }
   };
-
 
   const detect = async (net) => {
 
@@ -36,10 +33,8 @@ function App() {
       const videoWidth = webcamRef.current.video.videoWidth;
       const videoHeight = webcamRef.current.video.videoHeight;
 
-
       webcamRef.current.video.width = videoWidth;
       webcamRef.current.video.height = videoHeight;
-
 
       canvasRef.current.width = videoWidth;
       canvasRef.current.height = videoHeight;
@@ -55,9 +50,7 @@ function App() {
       const classes = await obj[2].array()
       const scores = await obj[4].array()
       
-
       const ctx = canvasRef.current.getContext("2d");
-
 
       requestAnimationFrame(()=>{drawRect(boxes[0], classes[0], scores[0], 0.8, videoWidth, videoHeight, ctx)}); 
 
@@ -66,7 +59,6 @@ function App() {
       tf.dispose(casted)
       tf.dispose(expanded)
       tf.dispose(obj)
-
     }
   };
 
